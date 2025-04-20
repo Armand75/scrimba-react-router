@@ -15,27 +15,119 @@
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-size: 1.8em;
+  color: black;
+  padding-left: 20px;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
+.home{
+  background-image: url('../../public/home-background.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 75vh;
+  padding: 40px;
+  position: relative;
+
+}
+
+.overlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(1px);
+  z-index: 1;
+}
+
+.content{
+  position: relative;
+  flex-direction: column;
+  z-index: 2;
+  display: flex;
+  place-content: center;
+}
+
+.content h2{
+  margin-top: 100px;
+}
+
+.content button{
+  margin-top: 150px;
+  padding: 15px;
+  font-size: larger;
+  font-weight: 600;
+  background-color: rgb(237, 162, 23);
+  border: 0px solid;
+  border-radius: 5px;
+}
+
+header{
+  display: flex;
+  justify-content: space-between;
+  height: 10vh;
+  align-items: center;
+  background-color: rgb(253, 242, 228);
+}
+
+header ul{
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  width: 150px;
   font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+}
+
+a{
+  text-decoration: none;
+  color: black;
 }
 
 
+footer{
+  display: flex;
+  align-items: center;
+  place-content: center;
+  text-align: center;
+  margin: auto ;
+  height: 5vh;
+  font-weight: 600;
+  font-size: x-small;
+}
+
+.about{
+  height: 85vh;
+  overflow: scroll;
+  background-color: rgb(253, 242, 228);
+  color: #242424;
+}
+
+img{
+  width: 100vw;
+  height: auto;
+  overflow: hidden;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 2px;
+}
+
+.explore{
+  margin: 40px 20px;
+  padding: 20px;
+  background-color: rgb(235, 171, 92);
+  border-radius: 5px;
+}
+
+.explore button{
+  background-color: black;
+  color: aliceblue;
+  font-weight: 600;
+  border-radius: 8px;
+  border: 0px;
+  padding: 7px 10px;
+}
