@@ -29,7 +29,7 @@ function About() {
           Your van is ready.
         </h2>
 
-        <button>Explore new van</button>
+        <button><Link to="/vans">Explore new van</Link></button>
       </div>
     </div>
   );

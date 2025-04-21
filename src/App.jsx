@@ -1,38 +1,51 @@
 import "./styles/App.css";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
-import About from "./pages/About"
-import Home from "./pages/Home"
+import About from "./pages/Vans/About";
+import Home from "./pages/Vans/Home";
+import Vans from "./pages/Vans/Vans";
+import VanDetail from "./pages/Vans/VanDetail";
+import Layout from "./components/Layout";
 
-function Header(){
-  return(
-    <header>
-      <h1>#VANLIFE</h1>
-      <ul>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/about">About</Link></li>
-      </ul>
-    </header>
-  )
-}
+import Host from "./pages/Host/Host";
+import HostIncome from "./pages/Host/HostIncome";
+import HostReviews from "./pages/Host/HostReviews";
+import HostVans from "./pages/Host/HostVans";
+import HostVan from "./pages/Host/HostVan";
 
-function Footer(){
-  return(
-    <footer>
-      <p>©2025 #VANLIFE</p>
-    </footer>
-  )
-}
+import HostVanDetail from "./pages/Host/HostVanDetail"
+import HostVanPricing from "./pages/Host/HostVanPricing"
+import HostVanPhotos from "./pages/Host/HostVanPhotos"
+
+import HostLayout from "./components/HostLayout";
+
+import "./server";
 
 function App() {
   return (
     <BrowserRouter>
-      <Header />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
+        <Route element={<Layout />}>
+          <Route path="" element={<Home />} />
+          <Route path="about" element={<About />} />
+          <Route path="vans" element={<Vans />} />
+          <Route path="vans/:id" element={<VanDetail />} />
+
+          <Route path="host" element={<HostLayout />}>
+            <Route path="" element={<Host />} />
+            <Route path="income" element={<HostIncome />} />
+
+            <Route path="vans" element={<HostVans />} />
+            <Route path="vans/:id" element={<HostVan />}>
+              <Route path="" element={<HostVanDetail />} />
+              <Route path="pricing" element={<HostVanPricing />} />
+              <Route path="photos" element={<HostVanPhotos />} />
+            </Route>
+
+            <Route path="reviews" element={<HostReviews />} />
+          </Route>
+        </Route>
       </Routes>
-      <Footer />
     </BrowserRouter>
   );
 }
