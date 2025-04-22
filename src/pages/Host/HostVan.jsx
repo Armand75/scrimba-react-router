@@ -1,28 +1,27 @@
-import { useState, useEffect } from "react";
-import { useParams, Link, NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet, useLoaderData } from "react-router-dom";
+import {getHostVans} from "../../api"
+import { requireAuth } from "../../utils";
+
+
+export async function loader({params}){
+  await requireAuth()
+  return getHostVans(params.id)
+}
 
 
 export default function HostVan() {
-  const [hostsVan, setHostsVan] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const params = useParams();
+  const [hostsVan] = useLoaderData();
+  console.log(hostsVan)
 
-  useEffect(() => {
-    fetch(`/api/host/vans/${params.id}`)
-      .then((res) => res.json())
-      .then((data) => setHostsVan(data.vans[0]));
-    setLoading(false);
-  }, [params]);
-  console.log(hostsVan);
+ 
   return (
     <div className="host-van">
       <Link to=".." relative="path">
         &larr; <span className="back">Back to all vans</span>
       </Link>
       <div className="host-van-details-container">
-        {loading && <div className="loader"></div>}
-        {hostsVan && (
-          <>
+        
+          
             <div className="host-van-details">
             <img src={hostsVan.imageUrl} alt={hostsVan.name} />
             <div className="host-van-name-type">
@@ -64,10 +63,7 @@ export default function HostVan() {
               </ul>
             </div>
             <Outlet context={{hostsVan}} />
-          </>
           
-          
-        )}
       </div>
     </div>
   );

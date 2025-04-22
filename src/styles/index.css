@@ -23,7 +23,7 @@ h1 {
 }
 
 .home{
-  background-image: url('../../public/home-background.jpg');
+  background-image: url('/home-background.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -81,6 +81,7 @@ ul{
   min-width: 30%;
   font-weight: bold;
   color: black;
+  align-items: center;
 }
 
 li{
@@ -344,5 +345,57 @@ img{
   width: 200px;
 }
 
+.page-not-found{
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  place-content: center;
+  gap: 50px;
+}
 
+.page-not-found button{
+  background-color: black;
+  border: 0px;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 10px;
+  font-size: 25px;
+  font-weight: 800;
+}
 
+.page-not-found h1{
+  font-size: 60px;
+}
+
+.login{
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  
+}
+
+.login input, .login input:active, .login input:focus{
+  background-color: aliceblue;
+  color: black;
+  padding: 10px;
+  margin: 10px 20px;
+  border: 2px solid rgb(255, 132, 0) ;
+  border-radius: 5px;
+  font-size: large;
+  outline: none;
+}
+
+.login button{
+  margin: 20px;
+  padding: 10px;
+  font-weight: 800;
+  font-size: 20px;
+  background-color: rgb(255, 132, 0);
+  border: 0px;
+  border-radius: 5px;
+}
+
+.red{
+  color: red;
+}
