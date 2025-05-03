@@ -1,22 +1,21 @@
-import { Link, useSearchParams, useLoaderData } from "react-router-dom";
-import {getVans} from "../../api"
+import {
+  Link,
+  useSearchParams,
+  useLoaderData,
+  Await,
+} from "react-router-dom";
+import { getVans } from "../../api";
+import { Suspense } from "react";
 
-function Vans() {
-  const vans = useLoaderData();
+export function loader() {
+  return { vans: getVans() };
+}
+
+export default function Vans() {
+  const vansPromiseObj = useLoaderData();
 
   const [searchParams, setSearchParams] = useSearchParams();
   const typeFilter = searchParams.get("type");
-  const filterdVans = vans.filter((van) => van.type === typeFilter);
-
-  
-  console.log(vans);
-
-  const types = vans.map((van) => van.type);
-  const vanTypes = [...new Set(types)];
-
-
-  
-
 
   function handleFilterChange(key, value) {
     setSearchParams((prevParams) => {
@@ -34,6 +33,7 @@ function Vans() {
       <div className="vans-list">
         {vans.map((van) => (
           <Link
+            key={van.id}
             to={`${van.id}`}
             state={{ search: searchParams.toString(), type: typeFilter }}
           >
@@ -60,35 +60,43 @@ function Vans() {
   return (
     <div className="vans">
       <h1>Explore our van options</h1>
-      
-      
-        <div className="types">
-          {vanTypes.map((type) => (
-            <div
-              className={`van-type ${typeFilter === type && `${type}`}`}
-              onClick={() => handleFilterChange("type", type)}
-            >
-              {type}
-            </div>
-          ))}
-          {typeFilter && (
-            <div
-              className="clear-filters"
-              onClick={() => handleFilterChange("type", null)}
-            >
-              Clear filters
-            </div>
-          )}
-        </div>
-      
-      
-        {filterdVans.length > 0 ? vansElement(filterdVans) : vansElement(vans)}
+      <Suspense fallback={<div className="loader"></div>}>
+        <Await resolve={vansPromiseObj.vans}>
+          {(vans) => {
+            const filterdVans = vans.filter((van) => van.type === typeFilter);
+            const types = vans.map((van) => van.type);
+            const vanTypes = [...new Set(types)];
+
+            return (
+              <>
+                <div className="types">
+                  {vanTypes.map((type) => (
+                    <div
+                      className={`van-type ${typeFilter === type && `${type}`}`}
+                      onClick={() => handleFilterChange("type", type)}
+                    >
+                      {type}
+                    </div>
+                  ))}
+                  {typeFilter && (
+                    <div
+                      className="clear-filters"
+                      onClick={() => handleFilterChange("type", null)}
+                    >
+                      Clear filters
+                    </div>
+                  )}
+                </div>
+                {filterdVans.length > 0
+                  ? vansElement(filterdVans)
+                  : vansElement(vans)}
+              </>
+            );
+          }}
+        </Await>
+      </Suspense>
     </div>
   );
 }
 
-export default Vans;
-
-export function loader() {
-  return getVans();
-}
+// console

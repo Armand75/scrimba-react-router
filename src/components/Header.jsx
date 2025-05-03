@@ -8,7 +8,7 @@ export default function Header(){
           <li><NavLink to="host" className={({isActive}) => isActive ? "active" : ""}>Host</NavLink></li>
           <li><NavLink to="about" className={({isActive}) => isActive ? "active" : ""}>About</NavLink></li>
           <li><NavLink to="vans" className={({isActive}) => isActive ? "active" : ""}>Vans</NavLink></li>
-          <li><NavLink to="login" className={({isActive}) => isActive ? "active" : ""}><i class="fas fa-user"></i></NavLink></li>
+          <li><NavLink to="login" className={({isActive}) => isActive ? "active" : ""}><i className="fas fa-user"></i></NavLink></li>
           
         </ul>
       </header>
