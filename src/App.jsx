@@ -36,7 +36,7 @@ import Login, {
 
 import "./server";
 
-function App() {
+export default function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Layout />}>
@@ -106,4 +106,4 @@ function App() {
   return <RouterProvider router={router} />;
 }
 
-export default App;
+

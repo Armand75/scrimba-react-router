@@ -65,6 +65,8 @@ export default function Vans() {
           {(vans) => {
             const filterdVans = vans.filter((van) => van.type === typeFilter);
             const types = vans.map((van) => van.type);
+
+            //remove types that appear more than once 
             const vanTypes = [...new Set(types)];
 
             return (
