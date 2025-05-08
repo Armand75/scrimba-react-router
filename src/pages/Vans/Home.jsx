@@ -10,7 +10,7 @@ function Home() {
           Add Adventure to your life by joining the #vanlife movement. <br />{" "}
           Rent the perfect van to make your perfect road trip.
         </p>
-        <button><Link to="/vans">Find Your Own Van</Link></button>
+        <button><Link to="/vans">I love u boobooooo❤️❤️❤️❤️</Link></button>
       </div>
     </div>
   );
